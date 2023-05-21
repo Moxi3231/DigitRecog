@@ -16,7 +16,7 @@ cvWin_name = "Moxank's (1064) Output"
 
 vd = None
 if x == 1:
-    vd = cv2.VideoCapture(0)
+    vd = cv2.VideoCapture(1)
 else:
     pth = input("Enter the path to video: ")
     vd = cv2.VideoCapture(pth)
@@ -108,7 +108,11 @@ while True:
             dxw += (diff//2)
         else:
             dxh += (diff//2)
+
+        sq_img = np.zeros((max(w,h),max(w,h)),dtype=np.uint8) 
         sq_img[dxh:h+dxh,dxw:w+dxw] = edged_img[y:y+h, x:x+w]
+
+
 
         sq_img = np.pad(sq_img,int(w*0.3))
         original_crd = (x,y,w,h)

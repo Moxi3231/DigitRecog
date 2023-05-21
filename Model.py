@@ -15,7 +15,7 @@ def load_Data():
 
 def get_model():
     model = tf.keras.Sequential([
-        tf.keras.layers.Conv2D(filters=32,kernel_size=(3,3),activation=tf.keras.activations.relu),
+        tf.keras.layers.Conv2D(filters=32,kernel_size=(5,5),activation=tf.keras.activations.relu),
         tf.keras.layers.MaxPool2D(pool_size=(2,2)),
         tf.keras.layers.Conv2D(filters=16,kernel_size=(3,3),activation=tf.keras.activations.relu),
         tf.keras.layers.MaxPool2D(pool_size=(2,2)),
@@ -40,7 +40,8 @@ def get_trained_model(training = True):
     model = get_model()
     saved_Dir = "ModelDigit"
     train_x,train_y,test_x,test_y = load_Data()
-    
+    model.fit(train_x,train_y,epochs = 1)
+    model.summary()
     if training:
         model.fit(train_x,train_y,epochs = 5)
         model.summary()
